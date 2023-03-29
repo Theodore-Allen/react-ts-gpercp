@@ -1,19 +1,16 @@
 import * as React from 'react';
 import PokiList from './PokiList';
-
+import NextBtn from './nextBtn';
 import './style.css';
+
 
 export default function App() {
   const [pokimon, setPokimon] = React.useState([]);
   const [currentPg, setCurrentPg] = React.useState(
     'https://pokeapi.co/api/v2/pokemon'
   );
-  const [nextPg, setNexttPg] = React.useState(
-    'https://pokeapi.co/api/v2/pokemon'
-  );
-  const [prevPg, setPrevPg] = React.useState(
-    'https://pokeapi.co/api/v2/pokemon'
-  );
+  const [nextPg, setNexttPg] = React.useState();
+  const [prevPg, setPrevPg] = React.useState();
 function HandleNextPg()
 {
   
@@ -34,6 +31,7 @@ function HandlePrevPg()
   return (
     //@ts-expect-error
   <>
-   <PokiList pokimons={pokimon} prev={HandlePrevPg} next={HandleNextPg}/>
+   <PokiList pokimons={pokimon} />
+   <NextBtn prev={prevPg ? HandlePrevPg : null} next={nextPg ? HandleNextPg: null}>
   </>);
 }
