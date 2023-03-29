@@ -32,6 +32,6 @@ function HandlePrevPg()
     //@ts-expect-error
   <>
    <PokiList pokimons={pokimon} />
-   <NextBtn prev={prevPg ? HandlePrevPg : null} next={nextPg ? HandleNextPg: null}>
+   <NextBtn prev={prevPg ? HandlePrevPg : null} next={nextPg ? HandleNextPg: null}/>
   </>);
 }
