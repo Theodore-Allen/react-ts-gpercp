@@ -1,4 +1,5 @@
 import * as React from 'react';
+import PokiList from './PokiList';
 
 import './style.css';
 
@@ -20,8 +21,11 @@ export default function App() {
     })
     .then((e) => {
       setNexttPg(e.next);
-      setPrevPg(e.previous)
+      setPrevPg(e.previous);
       setPokimon(e.results.map((e) => e));
     });
-  return;
+  return (
+  <>
+   <PokiList
+  </>);
 }
