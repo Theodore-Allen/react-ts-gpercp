@@ -14,7 +14,12 @@ export default function App() {
   const [prevPg, setPrevPg] = React.useState(
     'https://pokeapi.co/api/v2/pokemon'
   );
-
+function HandleNextPg()
+{
+  
+}
+function HandlePrevPg()
+{}
   fetch(currentPg)
     .then((e) => {
       return e.json();
@@ -24,9 +29,11 @@ export default function App() {
       setPrevPg(e.previous);
       setPokimon(e.results.map((e) => e));
     });
+
+
   return (
     //@ts-expect-error
   <>
-   <PokiList pokimons={pokimon} prev/>
+   <PokiList pokimons={pokimon} prev={HandlePrevPg} next={HandleNextPg}/>
   </>);
 }
