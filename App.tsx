@@ -25,7 +25,8 @@ export default function App() {
       setPokimon(e.results.map((e) => e));
     });
   return (
+    //@ts-expect-error
   <>
-   <PokiList
+   <PokiList pokimons={pokimon} prev/>
   </>);
 }
