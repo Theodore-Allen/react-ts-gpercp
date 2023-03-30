@@ -4,16 +4,22 @@ import NextBtn from './nextBtn';
 import './style.css';
 
 export default function App() {
+  const controller = new AbortController();
+  const { signal } = controller; 
+
+
   const [pokimon, setPokimon] = React.useState([]);
   const [currentPg, setCurrentPg] = React.useState(
     'https://pokeapi.co/api/v2/pokemon'
   );
   const [nextPg, setNexttPg] = React.useState();
   const [prevPg, setPrevPg] = React.useState();
-  const [loading, setLoading] = React.useState(false);
+  const [loading, setLoading] = React.useState(true);
   React.useEffect(() => {
-    setLoading(true);
-    fetch(currentPg)
+   setLoading(true); 
+   
+ 
+    fetch(currentPg, {signal})
       .then((e) => {
         return e.json();
       })
@@ -22,8 +28,9 @@ export default function App() {
         setPrevPg(e.previous);
         setPokimon(e.results.map((e) => e));
       });
-    setLoading(false);
+   
   }, [currentPg]);
+  React.useEffect(() => { setLoading(false);}, [pokimon])
   function HandleNextPg() {
     setCurrentPg(nextPg);
   }
@@ -31,8 +38,12 @@ export default function App() {
     setCurrentPg(prevPg);
   }
 
-  if (loading) {
-    return <h1>Loading..</h1>;
+  if (loading === true) {;
+    
+    return <div className="spinner"><div className="loadingio-spinner-spinner-hpuc1q5sojp"><div className="ldio-i9cgptvqnca">
+    <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+    </div></div>
+   </div>;
   }
   return (
     //@ts-expect-error
