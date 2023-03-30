@@ -5,8 +5,7 @@ import './style.css';
 
 export default function App() {
   const controller = new AbortController();
-  const { signal } = controller; 
-
+  const { signal } = controller;
 
   const [pokimon, setPokimon] = React.useState([]);
   const [currentPg, setCurrentPg] = React.useState(
@@ -16,10 +15,9 @@ export default function App() {
   const [prevPg, setPrevPg] = React.useState();
   const [loading, setLoading] = React.useState(true);
   React.useEffect(() => {
-   setLoading(true); 
-   
- 
-    fetch(currentPg, {signal})
+    setLoading(true);
+
+    fetch(currentPg, { signal })
       .then((e) => {
         return e.json();
       })
@@ -28,9 +26,10 @@ export default function App() {
         setPrevPg(e.previous);
         setPokimon(e.results.map((e) => e));
       });
-   
   }, [currentPg]);
-  React.useEffect(() => { setLoading(false);}, [pokimon])
+  React.useEffect(() => {
+    setLoading(false);
+  }, [pokimon]);
   function HandleNextPg() {
     setCurrentPg(nextPg);
   }
@@ -38,21 +37,38 @@ export default function App() {
     setCurrentPg(prevPg);
   }
 
-  if (loading === true) {;
-    
-    return <div className="spinner"><div className="loadingio-spinner-spinner-hpuc1q5sojp"><div className="ldio-i9cgptvqnca">
-    <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
-    </div></div>
-   </div>;
+  if (loading === true) {
+    return (
+      <div className="spinner">
+        <div className="loadingio-spinner-spinner-hpuc1q5sojp">
+          <div className="ldio-i9cgptvqnca">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+        </div>
+      </div>
+    );
   }
   return (
     //@ts-expect-error
     <>
       <PokiList pokimons={pokimon} />
-      <NextBtn
-        prev={prevPg ? HandlePrevPg : null}
-        next={nextPg ? HandleNextPg : null}
-      />
+      
+        <NextBtn
+          prev={prevPg ? HandlePrevPg : null}
+          next={nextPg ? HandleNextPg : null}
+        />
+  
     </>
   );
 }
