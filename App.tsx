@@ -62,12 +62,15 @@ export default function App() {
   return (
     //@ts-expect-error
     <>
+      <div className="container">
       <PokiList pokimons={pokimon} />
+      </div>
       
-        <NextBtn
+      <NextBtn
           prev={prevPg ? HandlePrevPg : null}
           next={nextPg ? HandleNextPg : null}
         />
+       
   
     </>
   );
